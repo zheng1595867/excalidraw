@@ -211,17 +211,42 @@ const askToPublish = (tag, version) => {
   });
 };
 
+const checkNpmAuth = () => {
+  try {
+    const whoami = execSync("npm whoami", { encoding: "utf-8" }).trim();
+    console.info(`Logged in to npm as: ${whoami}`);
+    return true;
+  } catch (error) {
+    // whoami may fail even if token exists, so we just warn
+    console.warn("Warning: Could not verify npm login status.");
+    console.warn("If publish fails, please run 'npm login' first.");
+    return false;
+  }
+};
+
 const publishPackages = (tag, version) => {
+  // Try to check npm authentication (non-blocking)
+  checkNpmAuth();
+
+  const npmRegistry = "https://registry.npmjs.org/";
+  
   for (const packageName of PACKAGES) {
     const packagePath = path.resolve(PACKAGES_DIR, packageName);
     
-    // Use npm publish instead of yarn publish for better scoped package support
+    // Use npm publish with explicit registry to avoid yarn registry issues
     // Add --access public for scoped packages
     try {
-      execSync(`npm publish --tag ${tag} --access public`, {
-        cwd: packagePath,
-        stdio: "inherit",
-      });
+      console.info(
+        `Publishing "${PACKAGE_SCOPE}/${packageName}" to ${npmRegistry}...`,
+      );
+      
+      execSync(
+        `npm publish --tag ${tag} --access public --registry ${npmRegistry}`,
+        {
+          cwd: packagePath,
+          stdio: "inherit",
+        },
+      );
 
       console.info(
         `Published "${PACKAGE_SCOPE}/${packageName}@${tag}" with version "${version}"! 🎉`,
@@ -232,6 +257,9 @@ const publishPackages = (tag, version) => {
       );
       console.error(
         `Please ensure you are logged in to npm and have permission to publish to ${PACKAGE_SCOPE} scope.`,
+      );
+      console.error(
+        `Run 'npm login' or check your NPM_TOKEN environment variable.`,
       );
       throw error;
     }

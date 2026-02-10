@@ -2392,4 +2392,9 @@ First release of `@excalidraw-modify/excalidraw`## Excalidraw Library
 **_This section lists the updates made to the excalidraw library and will not affect the integration._**
 
 ---
+## Excalidraw Library
+
+**_This section lists the updates made to the excalidraw library and will not affect the integration._**
+
+---
 
