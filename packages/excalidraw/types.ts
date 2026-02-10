@@ -63,6 +63,8 @@ import type { isOverScrollBars } from "./scene/scrollbars";
 import type React from "react";
 import type { JSX } from "react";
 
+export type { App };
+
 export type SocketId = string & { _brand: "SocketId" };
 
 export type Collaborator = Readonly<{
@@ -683,8 +685,10 @@ export type UIOptions = Partial<{
    * Optionally control the editor form factor and desktop UI mode from the host app.
    * If not provided, we will take care of it internally.
    */
-  formFactor?: EditorInterface["formFactor"];
-  desktopUIMode?: EditorInterface["desktopUIMode"];
+  getFormFactor?: (
+    editorWidth: number,
+    editorHeight: number,
+  ) => EditorInterface["formFactor"];
   /** @deprecated does nothing. Will be removed in 0.15 */
   welcomeScreen?: boolean;
 }>;

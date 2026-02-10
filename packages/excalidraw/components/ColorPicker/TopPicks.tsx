@@ -5,9 +5,8 @@ import {
   DEFAULT_CANVAS_BACKGROUND_PICKS,
   DEFAULT_ELEMENT_BACKGROUND_PICKS,
   DEFAULT_ELEMENT_STROKE_PICKS,
-} from "@excalidraw-modify/common";
-
-import { isColorDark } from "./colorPickerUtils";
+  isColorDark,
+} from "@excalidraw/common";
 
 import type { ColorPickerType } from "./colorPickerUtils";
 
