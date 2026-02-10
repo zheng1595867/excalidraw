@@ -1,9 +1,9 @@
-import { RequestError } from "@excalidraw/excalidraw/errors";
+import { RequestError } from "@excalidraw-modify/excalidraw/errors";
 
 import type {
   LLMMessage,
   TTTDDialog,
-} from "@excalidraw/excalidraw/components/TTDDialog/types";
+} from "@excalidraw-modify/excalidraw/components/TTDDialog/types";
 
 interface RateLimitInfo {
   rateLimit?: number;

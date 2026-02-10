@@ -10,7 +10,7 @@ interface Window {
   fathom: { trackEvent: Function };
   h?: {
     scene: import("./scene/types").Scene;
-    elements: readonly import("@excalidraw/element/types").ExcalidrawElement[];
+    elements: readonly import("@excalidraw-modify/element/types").ExcalidrawElement[];
     state: import("./types").AppState;
     setState: React.Component<any, import("./types").AppState>["setState"];
     watchState: (prev: any, next: any) => void | undefined;

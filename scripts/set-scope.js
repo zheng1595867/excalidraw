@@ -17,11 +17,11 @@ let previousScope = "excalidraw";
 for (const argument of args) {
   if (/--help/.test(argument)) {
     console.info(`Usage:
-  yarn set:scope --scope=@myteam [--from=@excalidraw]
+  yarn set:scope --scope=@myteam [--from=@excalidraw-modify]
 
 Options:
   --scope   新 scope，必须提供
-  --from    旧 scope，默认 @excalidraw
+  --from    旧 scope，默认 @excalidraw-modify
 `);
     process.exit(0);
   }

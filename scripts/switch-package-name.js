@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * 脚本用于在 @excalidraw-modify 和 @excalidraw 之间切换包名
+ * 脚本用于在 @excalidraw 和 @excalidraw-modify 之间切换包名
  * 
  * 项目说明:
  *   - 这是 Excalidraw 的源码仓库，默认使用 @excalidraw（与上游保持一致）
@@ -13,7 +13,7 @@
  * 
  * 或者直接使用:
  *   node scripts/switch-package-name.js excalidraw        # 切换到 @excalidraw
- *   node scripts/switch-package-name.js excalidraw-modify # 切换到 @excalidraw
+ *   node scripts/switch-package-name.js excalidraw-modify # 切换到 @excalidraw-modify
  * 
  * 发布流程:
  *   1. yarn switch:modify        # 切换到发布包名
@@ -21,7 +21,10 @@
  *   3. yarn release --tag=latest  # 发布到 npm
  *   4. yarn switch:excalidraw     # 切换回源码状态
  * 
- * 注意: 此脚本会替换所有文件中的包名引用，包括:
+ * 注意: 此脚本只替换核心包的引用（common, math, element, excalidraw, utils），
+ *       不会修改外部依赖包（如 laser-pointer, mermaid-to-excalidraw 等）和配置包（如 eslint-config, prettier-config 等）
+ * 
+ * 替换范围包括以下文件类型:
  *   - TypeScript/JavaScript 源文件 (.ts, .tsx, .js, .jsx)
  *   - JSON 配置文件 (.json)
  *   - Markdown 文档 (.md, .mdx)
@@ -43,10 +46,14 @@ if (!targetName || !['excalidraw', 'excalidraw-modify'].includes(targetName)) {
 }
 
 const targetPrefix = `@${targetName}`;
-const otherPrefix = targetName === 'excalidraw' ? '@excalidraw' : '@excalidraw';
+const otherPrefix = targetName === 'excalidraw' ? '@excalidraw-modify' : '@excalidraw';
+
+// 只修改这几个核心包
+const CORE_PACKAGES = ['common', 'math', 'element', 'excalidraw'];
 
 console.log(`正在切换到: ${targetPrefix}`);
 console.log(`替换: ${otherPrefix} -> ${targetPrefix}`);
+console.log(`只修改核心包: ${CORE_PACKAGES.join(', ')}`);
 
 // 需要替换的文件类型
 const fileExtensions = ['.ts', '.tsx', '.js', '.jsx', '.json', '.md', '.mdx', '.snap', '.html', '.yml', '.yaml'];
@@ -81,8 +88,14 @@ function replaceInFile(filePath) {
     let content = fs.readFileSync(filePath, 'utf8');
     const originalContent = content;
     
-    // 替换所有出现的包名
-    content = content.replace(new RegExp(otherPrefix.replace('@', '\\@'), 'g'), targetPrefix);
+    // 只替换核心包的引用
+    CORE_PACKAGES.forEach(pkg => {
+      const oldPattern = `${otherPrefix}/${pkg}`;
+      const newPattern = `${targetPrefix}/${pkg}`;
+      // 使用单词边界确保精确匹配
+      const regex = new RegExp(oldPattern.replace('@', '\\@').replace(/\//g, '\\/'), 'g');
+      content = content.replace(regex, newPattern);
+    });
     
     if (content !== originalContent) {
       fs.writeFileSync(filePath, content, 'utf8');

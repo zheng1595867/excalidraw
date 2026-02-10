@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { DEFAULT_UI_OPTIONS, isShallowEqual } from "@excalidraw/common";
+import { DEFAULT_UI_OPTIONS, isShallowEqual } from "@excalidraw-modify/common";
 
 import App from "./components/App";
 import { InitializeApp } from "./components/InitializeApp";
@@ -229,10 +229,10 @@ export {
   hashElementsVersion,
   hashString,
   getNonDeletedElements,
-} from "@excalidraw/element";
+} from "@excalidraw-modify/element";
 
-export { getTextFromElements } from "@excalidraw/element";
-export { isInvisiblySmallElement } from "@excalidraw/element";
+export { getTextFromElements } from "@excalidraw-modify/element";
+export { isInvisiblySmallElement } from "@excalidraw-modify/element";
 
 export { defaultLang, useI18n, languages } from "./i18n";
 export {
@@ -258,7 +258,7 @@ export {
   loadLibraryFromBlob,
 } from "./data/blob";
 export { mergeLibraryItems, getLibraryItemsHash } from "./data/library";
-export { isLinearElement } from "@excalidraw/element";
+export { isLinearElement } from "@excalidraw-modify/element";
 
 export {
   FONT_FAMILY,
@@ -271,15 +271,15 @@ export {
   sceneCoordsToViewportCoords,
   viewportCoordsToSceneCoords,
   getFormFactor,
-} from "@excalidraw/common";
+} from "@excalidraw-modify/common";
 
 export {
   mutateElement,
   newElementWith,
   bumpVersion,
-} from "@excalidraw/element";
+} from "@excalidraw-modify/element";
 
-export { CaptureUpdateAction } from "@excalidraw/element";
+export { CaptureUpdateAction } from "@excalidraw-modify/element";
 
 export { parseLibraryTokensFromUrl, useHandleLibrary } from "./data/library";
 
@@ -308,7 +308,7 @@ export {
   getCommonBounds,
   getVisibleSceneBounds,
   convertToExcalidrawElements,
-} from "@excalidraw/element";
+} from "@excalidraw-modify/element";
 
 export {
   elementsOverlappingBBox,
@@ -318,8 +318,8 @@ export {
 
 export { DiagramToCodePlugin } from "./components/DiagramToCodePlugin/DiagramToCodePlugin";
 export { getDataURL } from "./data/blob";
-export { isElementLink } from "@excalidraw/element";
+export { isElementLink } from "@excalidraw-modify/element";
 
-export { setCustomTextMetricsProvider } from "@excalidraw/element";
+export { setCustomTextMetricsProvider } from "@excalidraw-modify/element";
 
 export { CommandPalette } from "./components/CommandPalette/CommandPalette";

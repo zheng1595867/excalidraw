@@ -17,9 +17,9 @@ One of the dependencies of the library is [`mermaid`](https://www.npmjs.com/pack
 We need the mermaid diagram in some extractable format so we can parse it to Excalidraw Elements.
 
 Parsing is broken into two steps
-1. [`Rendering Mermaid to Svg`](/docs/@excalidraw/mermaid-to-excalidraw/codebase/parser#rendering-mermaid-to-svg) - This helps in determining the position and dimensions of each element in the diagram
+1. [`Rendering Mermaid to Svg`](/docs/@excalidraw-modify/mermaid-to-excalidraw/codebase/parser#rendering-mermaid-to-svg) - This helps in determining the position and dimensions of each element in the diagram
 
-2. [`Parsing the mermaid syntax`](/docs/@excalidraw/mermaid-to-excalidraw/codebase/parser#parsing-the-mermaid-syntax) - We also need to know how elements are connected which isn't possible with svg alone hence we also parse the mermaid syntax which helps in determining the connections and bindings between elements in the diagram.
+2. [`Parsing the mermaid syntax`](/docs/@excalidraw-modify/mermaid-to-excalidraw/codebase/parser#parsing-the-mermaid-syntax) - We also need to know how elements are connected which isn't possible with svg alone hence we also parse the mermaid syntax which helps in determining the connections and bindings between elements in the diagram.
 
 ### Rendering Mermaid to Svg
 
@@ -51,7 +51,7 @@ Next we write our own parser to parse this diagram.
 
 For each diagram type, we need a parser as the result of every diagram would differ and dependinng on the data we have to write the parser. Since currently we support flowchart, so here is the [`parseMermaidFlowChartDiagram`](https://github.com/excalidraw/mermaid-to-excalidraw/blob/master/src/parser/flowchart.ts#L256) to parse the flowchart diagram.
 
-If you want to understand how flowchart parser works, you can navigate to [Flowchart Parser](http://localhost:3003/docs/@excalidraw/mermaid-to-excalidraw/codebase/parser/flowchart).
+If you want to understand how flowchart parser works, you can navigate to [Flowchart Parser](http://localhost:3003/docs/@excalidraw-modify/mermaid-to-excalidraw/codebase/parser/flowchart).
 
 ## Converting to ExcalidrawElementSkeleton
 

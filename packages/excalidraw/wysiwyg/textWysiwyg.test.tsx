@@ -1,7 +1,7 @@
 import { queryByText } from "@testing-library/react";
 
-import { pointFrom } from "@excalidraw/math";
-import { getOriginalContainerHeightFromCache } from "@excalidraw/element";
+import { pointFrom } from "@excalidraw-modify/math";
+import { getOriginalContainerHeightFromCache } from "@excalidraw-modify/element";
 
 import {
   CODES,
@@ -12,12 +12,12 @@ import {
   THEME,
   VERTICAL_ALIGN,
   applyDarkModeFilter,
-} from "@excalidraw/common";
+} from "@excalidraw-modify/common";
 
 import type {
   ExcalidrawTextElement,
   ExcalidrawTextElementWithContainer,
-} from "@excalidraw/element/types";
+} from "@excalidraw-modify/element/types";
 
 import { Excalidraw } from "../index";
 import { API } from "../tests/helpers/api";

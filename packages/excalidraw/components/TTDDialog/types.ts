@@ -1,6 +1,6 @@
-import type { RequestError } from "@excalidraw/excalidraw/errors";
+import type { RequestError } from "@excalidraw-modify/excalidraw/errors";
 
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
+import type { NonDeletedExcalidrawElement } from "@excalidraw-modify/element/types";
 
 import type { MermaidConfig } from "@excalidraw/mermaid-to-excalidraw";
 

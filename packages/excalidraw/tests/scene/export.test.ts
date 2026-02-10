@@ -4,13 +4,13 @@ import {
   applyDarkModeFilter,
   FONT_FAMILY,
   FRAME_STYLE,
-} from "@excalidraw/common";
+} from "@excalidraw-modify/common";
 
 import type {
   ExcalidrawTextElement,
   FractionalIndex,
   NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+} from "@excalidraw-modify/element/types";
 
 import { prepareElementsForExport } from "../../data";
 import * as exportUtils from "../../scene/export";

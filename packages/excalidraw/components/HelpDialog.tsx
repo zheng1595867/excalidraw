@@ -1,8 +1,8 @@
 import React from "react";
 
-import { isDarwin, isFirefox, isWindows } from "@excalidraw/common";
+import { isDarwin, isFirefox, isWindows } from "@excalidraw-modify/common";
 
-import { KEYS } from "@excalidraw/common";
+import { KEYS } from "@excalidraw-modify/common";
 
 import { getShortcutFromShortcutName } from "../actions/shortcuts";
 import { probablySupportsClipboardBlob } from "../clipboard";
@@ -47,7 +47,7 @@ const Header = () => (
     </a>
     <a
       className="HelpDialog__btn"
-      href="https://youtube.com/@excalidraw"
+      href="https://youtube.com/@excalidraw-modify"
       target="_blank"
       rel="noopener noreferrer"
     >

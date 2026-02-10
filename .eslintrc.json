@@ -1,5 +1,5 @@
 {
-  "extends": ["@excalidraw/eslint-config", "react-app"],
+  "extends": ["@excalidraw-modify/eslint-config", "react-app"],
   "rules": {
     "import/order": [
       "warn",
@@ -7,7 +7,7 @@
         "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
         "pathGroups": [
           {
-            "pattern": "@excalidraw/**",
+            "pattern": "@excalidraw-modify/**",
             "group": "external",
             "position": "after"
           }

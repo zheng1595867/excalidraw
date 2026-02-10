@@ -1,9 +1,9 @@
-import { DEFAULT_EXPORT_PADDING, EDITOR_LS_KEYS } from "@excalidraw/common";
+import { DEFAULT_EXPORT_PADDING, EDITOR_LS_KEYS } from "@excalidraw-modify/common";
 
 import type {
   NonDeletedExcalidrawElement,
   Theme,
-} from "@excalidraw/element/types";
+} from "@excalidraw-modify/element/types";
 
 import { EditorLocalStorage } from "../../data/EditorLocalStorage";
 import {
