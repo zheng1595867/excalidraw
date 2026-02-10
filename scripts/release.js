@@ -188,7 +188,7 @@ const buildPackages = () => {
 };
 
 const askToPublish = (tag, version) => {
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
     const rl = require("readline").createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -196,11 +196,11 @@ const askToPublish = (tag, version) => {
 
     rl.question(
       "Would you like to publish these changes to npm? (Y/n): ",
-      (answer) => {
+      async (answer) => {
         rl.close();
 
         if (answer.toLowerCase() === "y") {
-          publishPackages(tag, version);
+          await publishPackages(tag, version);
         } else {
           console.info("Skipping publish.");
         }
@@ -249,7 +249,44 @@ const checkNpmAuth = () => {
   }
 };
 
-const publishPackages = (tag, version) => {
+const askForOTP = () => {
+  return new Promise((resolve) => {
+    // Check if OTP is already set in environment or config
+    if (process.env.NPM_CONFIG_OTP || process.env.OTP) {
+      console.info("Using OTP from environment variable.");
+      resolve(process.env.NPM_CONFIG_OTP || process.env.OTP);
+      return;
+    }
+
+    try {
+      const otp = execSync("npm config get otp", { encoding: "utf-8" }).trim();
+      if (otp && otp !== "undefined" && otp !== "null") {
+        console.info("Using OTP from npm config.");
+        resolve(otp);
+        return;
+      }
+    } catch (error) {
+      // Ignore error
+    }
+
+    const rl = require("readline").createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    console.info("");
+    console.info("📱 Two-Factor Authentication (2FA) is enabled on your npm account.");
+    console.info("You need to provide a 2FA code to publish packages.");
+    console.info("");
+
+    rl.question("Enter your 2FA code (or press Enter to skip and enter it when prompted): ", (otp) => {
+      rl.close();
+      resolve(otp.trim() || null);
+    });
+  });
+};
+
+const publishPackages = async (tag, version) => {
   // Force check npm authentication before publishing
   if (!checkNpmAuth()) {
     console.error("");
@@ -257,6 +294,10 @@ const publishPackages = (tag, version) => {
     console.error("Please fix authentication issues and try again.");
     process.exit(1);
   }
+
+  // Check if 2FA is enabled and ask for OTP
+  let otp = await askForOTP();
+  const otpArg = otp ? `--otp=${otp}` : "";
 
   const npmRegistry = "https://registry.npmjs.org/";
   
@@ -270,13 +311,12 @@ const publishPackages = (tag, version) => {
         `Publishing "${PACKAGE_SCOPE}/${packageName}" to ${npmRegistry}...`,
       );
       
-      execSync(
-        `npm publish --tag ${tag} --access public --registry ${npmRegistry}`,
-        {
-          cwd: packagePath,
-          stdio: "inherit",
-        },
-      );
+      const publishCommand = `npm publish --tag ${tag} --access public --registry ${npmRegistry} ${otpArg}`.trim();
+      
+      execSync(publishCommand, {
+        cwd: packagePath,
+        stdio: "inherit",
+      });
 
       console.info(
         `Published "${PACKAGE_SCOPE}/${packageName}@${tag}" with version "${version}"! 🎉`,
@@ -362,7 +402,7 @@ const publishPackages = (tag, version) => {
   updatePackageJsons(version);
 
   if (nonInteractive) {
-    publishPackages(tag, version);
+    await publishPackages(tag, version);
   } else {
     await askToCommit(tag, version);
     await askToPublish(tag, version);
