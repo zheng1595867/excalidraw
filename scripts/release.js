@@ -282,15 +282,68 @@ const publishPackages = (tag, version) => {
         `Published "${PACKAGE_SCOPE}/${packageName}@${tag}" with version "${version}"! 🎉`,
       );
     } catch (error) {
+      const errorMessage = error.message || error.toString();
+      const errorOutput = error.stderr?.toString() || error.stdout?.toString() || "";
+      
       console.error(
-        `Failed to publish "${PACKAGE_SCOPE}/${packageName}": ${error.message}`,
+        `Failed to publish "${PACKAGE_SCOPE}/${packageName}": ${errorMessage}`,
       );
-      console.error(
-        `Please ensure you are logged in to npm and have permission to publish to ${PACKAGE_SCOPE} scope.`,
-      );
-      console.error(
-        `Run 'npm login' or check your NPM_TOKEN environment variable.`,
-      );
+      
+      // Check for specific error types
+      if (errorMessage.includes("403") || errorOutput.includes("403")) {
+        if (
+          errorMessage.includes("Two-factor authentication") ||
+          errorOutput.includes("Two-factor authentication") ||
+          errorMessage.includes("granular access token") ||
+          errorOutput.includes("granular access token")
+        ) {
+          console.error("");
+          console.error("⚠️  Two-Factor Authentication (2FA) Required!");
+          console.error("");
+          console.error("npm now requires 2FA or a granular access token to publish packages.");
+          console.error("");
+          console.error("To fix this:");
+          console.error("");
+          console.error("Option 1: Enable 2FA on your npm account");
+          console.error("  1. Go to: https://www.npmjs.com/settings/YOUR_USERNAME/security");
+          console.error("  2. Enable 'Two-Factor Authentication'");
+          console.error("  3. When publishing, npm will prompt for the 2FA code");
+          console.error("  4. Or set it via: npm config set otp YOUR_2FA_CODE");
+          console.error("");
+          console.error("Option 2: Use a Granular Access Token (for CI/CD)");
+          console.error("  1. Go to: https://www.npmjs.com/settings/YOUR_USERNAME/access-tokens");
+          console.error("  2. Create a new 'Granular Access Token'");
+          console.error("  3. Enable 'Bypass 2FA' permission");
+          console.error("  4. Set the token: npm config set //registry.npmjs.org/:_authToken YOUR_TOKEN");
+          console.error("");
+          console.error("For more info: https://docs.npmjs.com/about-two-factor-authentication");
+          console.error("");
+        } else {
+          console.error("");
+          console.error("⚠️  403 Forbidden - Permission denied");
+          console.error("");
+          console.error("Possible reasons:");
+          console.error("  - You don't have permission to publish to @excalidraw-modify scope");
+          console.error("  - The package name is already taken by another user");
+          console.error("  - Your account doesn't have publish access");
+          console.error("");
+        }
+      } else if (errorMessage.includes("401") || errorOutput.includes("401")) {
+        console.error("");
+        console.error("⚠️  401 Unauthorized - Authentication failed");
+        console.error("");
+        console.error("Please run: npm login");
+        console.error("Then verify with: npm whoami");
+        console.error("");
+      } else {
+        console.error("");
+        console.error(
+          `Please ensure you are logged in to npm and have permission to publish to ${PACKAGE_SCOPE} scope.`,
+        );
+        console.error("Run 'npm login' or check your NPM_TOKEN environment variable.");
+        console.error("");
+      }
+      
       throw error;
     }
   }
