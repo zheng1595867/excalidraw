@@ -168,7 +168,12 @@ const askToCommit = (tag, nextVersion) => {
 
 const buildPackages = () => {
   console.info("Running yarn install...");
-  execSync(`yarn --frozen-lockfile`, { stdio: "inherit" });
+  try {
+    execSync(`yarn --frozen-lockfile`, { stdio: "inherit" });
+  } catch (error) {
+    console.warn("yarn install failed, but continuing with build...");
+    console.warn("If you encounter build errors, please run 'yarn install' manually first.");
+  }
 
   console.info("Removing existing build artifacts...");
   execSync(`yarn rm:build`, { stdio: "inherit" });

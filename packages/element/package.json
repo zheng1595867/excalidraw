@@ -1,6 +1,6 @@
 {
   "name": "@excalidraw-modify/element",
-  "version": "0.18.0-8b71db27",
+  "version": "0.18.1",
   "type": "module",
   "types": "./dist/types/element/src/index.d.ts",
   "main": "./dist/prod/index.js",
@@ -63,7 +63,7 @@
     "build:esm": "rimraf dist && node ../../scripts/buildBase.js && yarn gen:types"
   },
   "dependencies": {
-    "@excalidraw-modify/common": "0.18.0-8b71db27",
-    "@excalidraw-modify/math": "0.18.0-8b71db27"
+    "@excalidraw-modify/common": "0.18.1",
+    "@excalidraw-modify/math": "0.18.1"
   }
 }
