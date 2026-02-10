@@ -15,7 +15,7 @@ import {
   pointDistance,
   type LocalPoint,
   pointRotateRads,
-} from "@excalidraw-modify/math";
+} from "@excalidraw/math";
 import {
   ROUGHNESS,
   THEME,
@@ -28,14 +28,14 @@ import {
 
 import { RoughGenerator } from "roughjs/bin/generator";
 
-import type { GlobalPoint } from "@excalidraw-modify/math";
+import type { GlobalPoint } from "@excalidraw/math";
 
-import type { Mutable } from "@excalidraw-modify/common/utility-types";
+import type { Mutable } from "@excalidraw/common/utility-types";
 
 import type {
   AppState,
   EmbedsValidationStatus,
-} from "@excalidraw-modify/excalidraw/types";
+} from "@excalidraw/excalidraw/types";
 import type {
   ElementShape,
   ElementShapes,

@@ -1,4 +1,4 @@
-import { clamp, roundToStep } from "@excalidraw-modify/math";
+import { clamp, roundToStep } from "@excalidraw/math";
 
 import {
   DEFAULT_CANVAS_BACKGROUND_PICKS,
@@ -10,15 +10,15 @@ import {
   updateActiveTool,
   CODES,
   KEYS,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import { getNonDeletedElements } from "@excalidraw-modify/element";
-import { newElementWith } from "@excalidraw-modify/element";
-import { getCommonBounds, type SceneBounds } from "@excalidraw-modify/element";
+import { getNonDeletedElements } from "@excalidraw/element";
+import { newElementWith } from "@excalidraw/element";
+import { getCommonBounds, type SceneBounds } from "@excalidraw/element";
 
-import { CaptureUpdateAction } from "@excalidraw-modify/element";
+import { CaptureUpdateAction } from "@excalidraw/element";
 
-import type { ExcalidrawElement } from "@excalidraw-modify/element/types";
+import type { ExcalidrawElement } from "@excalidraw/element/types";
 
 import {
   getDefaultAppState,
@@ -146,7 +146,7 @@ export const actionZoomIn = register({
           {
             viewportX: appState.width / 2 + appState.offsetLeft,
             viewportY: appState.height / 2 + appState.offsetTop,
-            nextZoom: getNormalizedZoom(appState.zoom.value + ZOOM_STEP),
+            nextZoom: app.normalizeZoom(appState.zoom.value + ZOOM_STEP),
           },
           appState,
         ),
@@ -155,19 +155,24 @@ export const actionZoomIn = register({
       captureUpdate: CaptureUpdateAction.EVENTUALLY,
     };
   },
-  PanelComponent: ({ updateData, appState }) => (
-    <ToolButton
-      type="button"
-      className="zoom-in-button zoom-button"
-      icon={ZoomInIcon}
-      title={`${t("buttons.zoomIn")} — ${getShortcutKey("CtrlOrCmd++")}`}
-      aria-label={t("buttons.zoomIn")}
-      disabled={appState.zoom.value >= MAX_ZOOM}
-      onClick={() => {
-        updateData(null);
-      }}
-    />
-  ),
+  PanelComponent: ({ updateData, appState, app }) => {
+    const maxZoom = app.props.minZoom !== undefined || app.props.maxZoom !== undefined
+      ? (app.props.maxZoom ?? MAX_ZOOM)
+      : MAX_ZOOM;
+    return (
+      <ToolButton
+        type="button"
+        className="zoom-in-button zoom-button"
+        icon={ZoomInIcon}
+        title={`${t("buttons.zoomIn")} — ${getShortcutKey("CtrlOrCmd++")}`}
+        aria-label={t("buttons.zoomIn")}
+        disabled={appState.zoom.value >= maxZoom}
+        onClick={() => {
+          updateData(null);
+        }}
+      />
+    );
+  },
   keyTest: (event) =>
     (event.code === CODES.EQUAL || event.code === CODES.NUM_ADD) &&
     (event[KEYS.CTRL_OR_CMD] || event.shiftKey),
@@ -187,7 +192,7 @@ export const actionZoomOut = register({
           {
             viewportX: appState.width / 2 + appState.offsetLeft,
             viewportY: appState.height / 2 + appState.offsetTop,
-            nextZoom: getNormalizedZoom(appState.zoom.value - ZOOM_STEP),
+            nextZoom: app.normalizeZoom(appState.zoom.value - ZOOM_STEP),
           },
           appState,
         ),
@@ -196,19 +201,24 @@ export const actionZoomOut = register({
       captureUpdate: CaptureUpdateAction.EVENTUALLY,
     };
   },
-  PanelComponent: ({ updateData, appState }) => (
-    <ToolButton
-      type="button"
-      className="zoom-out-button zoom-button"
-      icon={ZoomOutIcon}
-      title={`${t("buttons.zoomOut")} — ${getShortcutKey("CtrlOrCmd+-")}`}
-      aria-label={t("buttons.zoomOut")}
-      disabled={appState.zoom.value <= MIN_ZOOM}
-      onClick={() => {
-        updateData(null);
-      }}
-    />
-  ),
+  PanelComponent: ({ updateData, appState, app }) => {
+    const minZoom = app.props.minZoom !== undefined || app.props.maxZoom !== undefined
+      ? (app.props.minZoom ?? MIN_ZOOM)
+      : MIN_ZOOM;
+    return (
+      <ToolButton
+        type="button"
+        className="zoom-out-button zoom-button"
+        icon={ZoomOutIcon}
+        title={`${t("buttons.zoomOut")} — ${getShortcutKey("CtrlOrCmd+-")}`}
+        aria-label={t("buttons.zoomOut")}
+        disabled={appState.zoom.value <= minZoom}
+        onClick={() => {
+          updateData(null);
+        }}
+      />
+    );
+  },
   keyTest: (event) =>
     (event.code === CODES.MINUS || event.code === CODES.NUM_SUBTRACT) &&
     (event[KEYS.CTRL_OR_CMD] || event.shiftKey),
@@ -228,7 +238,7 @@ export const actionResetZoom = register({
           {
             viewportX: appState.width / 2 + appState.offsetLeft,
             viewportY: appState.height / 2 + appState.offsetTop,
-            nextZoom: getNormalizedZoom(1),
+            nextZoom: app.normalizeZoom(1),
           },
           appState,
         ),
@@ -294,7 +304,10 @@ export const zoomToFitBounds = ({
   minZoom?: number;
   maxZoom?: number;
 }) => {
-  viewportZoomFactor = clamp(viewportZoomFactor, MIN_ZOOM, MAX_ZOOM);
+  // Use custom minZoom/maxZoom if provided, otherwise use defaults
+  const effectiveMinZoom = minZoom ?? MIN_ZOOM;
+  const effectiveMaxZoom = maxZoom ?? MAX_ZOOM;
+  viewportZoomFactor = clamp(viewportZoomFactor, effectiveMinZoom, effectiveMaxZoom);
 
   const [x1, y1, x2, y2] = bounds;
   const centerX = (x1 + x2) / 2;
@@ -333,7 +346,9 @@ export const zoomToFitBounds = ({
   }
 
   const newZoomValue = getNormalizedZoom(
-    clamp(roundToStep(adjustedZoomValue, ZOOM_STEP, "floor"), minZoom, maxZoom),
+    clamp(roundToStep(adjustedZoomValue, ZOOM_STEP, "floor"), minZoom ?? -Infinity, maxZoom ?? Infinity),
+    minZoom,
+    maxZoom,
   );
 
   const centerScroll = centerScrollOn({

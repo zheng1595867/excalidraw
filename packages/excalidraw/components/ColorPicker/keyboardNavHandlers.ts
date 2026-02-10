@@ -1,12 +1,12 @@
-import { COLORS_PER_ROW, COLOR_PALETTE, KEYS } from "@excalidraw-modify/common";
+import { COLORS_PER_ROW, COLOR_PALETTE, KEYS } from "@excalidraw/common";
 
 import type {
   ColorPickerColor,
   ColorPalette,
   ColorPaletteCustom,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import type { ValueOf } from "@excalidraw-modify/common/utility-types";
+import type { ValueOf } from "@excalidraw/common/utility-types";
 
 import {
   colorPickerHotkeyBindings,

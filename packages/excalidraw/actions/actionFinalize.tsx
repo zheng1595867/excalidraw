@@ -1,18 +1,18 @@
-import { pointFrom } from "@excalidraw-modify/math";
+import { pointFrom } from "@excalidraw/math";
 
-import { bindOrUnbindBindingElement } from "@excalidraw-modify/element/binding";
+import { bindOrUnbindBindingElement } from "@excalidraw/element/binding";
 import {
   isValidPolygon,
   LinearElementEditor,
   newElementWith,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import {
   isBindingElement,
   isFreeDrawElement,
   isLinearElement,
   isLineElement,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import {
   KEYS,
@@ -20,20 +20,20 @@ import {
   invariant,
   shouldRotateWithDiscreteAngle,
   updateActiveTool,
-} from "@excalidraw-modify/common";
-import { isPathALoop } from "@excalidraw-modify/element";
+} from "@excalidraw/common";
+import { isPathALoop } from "@excalidraw/element";
 
-import { isInvisiblySmallElement } from "@excalidraw-modify/element";
+import { isInvisiblySmallElement } from "@excalidraw/element";
 
-import { CaptureUpdateAction } from "@excalidraw-modify/element";
+import { CaptureUpdateAction } from "@excalidraw/element";
 
-import type { GlobalPoint, LocalPoint } from "@excalidraw-modify/math";
+import type { GlobalPoint, LocalPoint } from "@excalidraw/math";
 import type {
   ExcalidrawElement,
   ExcalidrawLinearElement,
   NonDeleted,
   PointsPositionUpdates,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { t } from "../i18n";
 import { resetCursor } from "../cursor";

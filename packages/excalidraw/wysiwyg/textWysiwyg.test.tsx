@@ -1,7 +1,7 @@
 import { queryByText } from "@testing-library/react";
 
-import { pointFrom } from "@excalidraw-modify/math";
-import { getOriginalContainerHeightFromCache } from "@excalidraw-modify/element";
+import { pointFrom } from "@excalidraw/math";
+import { getOriginalContainerHeightFromCache } from "@excalidraw/element";
 
 import {
   CODES,
@@ -17,7 +17,7 @@ import {
 import type {
   ExcalidrawTextElement,
   ExcalidrawTextElementWithContainer,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { Excalidraw } from "../index";
 import { API } from "../tests/helpers/api";

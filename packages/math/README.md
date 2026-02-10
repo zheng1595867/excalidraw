@@ -1,19 +1,19 @@
-# @excalidraw-modify/math
+# @excalidraw/math
 
 ## Install
 
 ```bash
-npm install @excalidraw-modify/math
+npm install @excalidraw/math
 ```
 
 If you prefer Yarn over npm, use this command to install the Excalidraw utils package:
 
 ```bash
-yarn add @excalidraw-modify/math
+yarn add @excalidraw/math
 ```
 
 With PNPM, similarly install the package with this command:
 
 ```bash
-pnpm add @excalidraw-modify/math
+pnpm add @excalidraw/math
 ```

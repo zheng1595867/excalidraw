@@ -1,13 +1,13 @@
-import { KEYS, reseed } from "@excalidraw-modify/common";
+import { KEYS, reseed } from "@excalidraw/common";
 
-import { Excalidraw } from "@excalidraw-modify/excalidraw";
+import { Excalidraw } from "@excalidraw/excalidraw";
 
-import { API } from "@excalidraw-modify/excalidraw/tests/helpers/api";
-import { UI, Keyboard, Pointer } from "@excalidraw-modify/excalidraw/tests/helpers/ui";
+import { API } from "@excalidraw/excalidraw/tests/helpers/api";
+import { UI, Keyboard, Pointer } from "@excalidraw/excalidraw/tests/helpers/ui";
 import {
   render,
   unmountComponent,
-} from "@excalidraw-modify/excalidraw/tests/test-utils";
+} from "@excalidraw/excalidraw/tests/test-utils";
 
 unmountComponent();
 

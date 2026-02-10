@@ -8,7 +8,7 @@ import {
   VERSIONS,
   chunk,
   getExportSource,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
 import { EditorLocalStorage } from "../data/EditorLocalStorage";
 import { canvasToBlob, resizeImageFile } from "../data/blob";

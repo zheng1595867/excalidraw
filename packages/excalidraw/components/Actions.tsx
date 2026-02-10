@@ -7,7 +7,7 @@ import {
   KEYS,
   capitalizeString,
   isTransparent,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
 import {
   shouldAllowVerticalAlign,
@@ -20,14 +20,14 @@ import {
   isArrowElement,
   hasStrokeColor,
   toolIsArrow,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import type {
   ExcalidrawElement,
   ExcalidrawElementType,
   NonDeletedElementsMap,
   NonDeletedSceneElementsMap,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { actionToggleZenMode } from "../actions";
 

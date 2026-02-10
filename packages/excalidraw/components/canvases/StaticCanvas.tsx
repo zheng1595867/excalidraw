@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 
-import { isShallowEqual } from "@excalidraw-modify/common";
+import { isShallowEqual } from "@excalidraw/common";
 
 import type {
   NonDeletedExcalidrawElement,
   NonDeletedSceneElementsMap,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { isRenderThrottlingEnabled } from "../../reactUtils";
 import { renderStaticScene } from "../../renderer/staticScene";

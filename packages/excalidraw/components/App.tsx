@@ -15,7 +15,7 @@ import {
   vectorSubtract,
   vectorDot,
   vectorNormalize,
-} from "@excalidraw-modify/math";
+} from "@excalidraw/math";
 
 import {
   COLOR_PALETTE,
@@ -108,7 +108,7 @@ import {
   loadDesktopUIModePreference,
   setDesktopUIMode,
   isSelectionLikeTool,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
 import {
   getObservedAppState,
@@ -257,7 +257,7 @@ import {
   getUncroppedWidthAndHeight,
 } from "@excalidraw/element";
 
-import type { GlobalPoint, LocalPoint, Radians } from "@excalidraw-modify/math";
+import type { GlobalPoint, LocalPoint, Radians } from "@excalidraw/math";
 
 import type {
   ExcalidrawElement,
@@ -283,9 +283,9 @@ import type {
   ExcalidrawElbowArrowElement,
   SceneElementsMap,
   ExcalidrawBindableElement,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
-import type { Mutable, ValueOf } from "@excalidraw-modify/common/utility-types";
+import type { Mutable, ValueOf } from "@excalidraw/common/utility-types";
 
 import {
   actionAddToLibrary,
@@ -489,6 +489,7 @@ import type {
   GenerateDiagramToCode,
   NullableGridSize,
   Offsets,
+  NormalizedZoomValue,
 } from "../types";
 import type { RoughCanvas } from "roughjs/bin/canvas";
 import type { Action, ActionResult } from "../actions/types";
@@ -693,6 +694,9 @@ class App extends React.Component<AppProps, AppState> {
   >();
   onRemoveEventListenersEmitter = new Emitter<[]>();
 
+  private minZoom?: number;
+  private maxZoom?: number;
+
   constructor(props: AppProps) {
     super(props);
     const defaultAppState = getDefaultAppState();
@@ -704,7 +708,11 @@ class App extends React.Component<AppProps, AppState> {
       objectsSnapModeEnabled = false,
       theme = defaultAppState.theme,
       name = `${t("labels.untitled")}-${getDateTime()}`,
+      minZoom,
+      maxZoom,
     } = props;
+    this.minZoom = minZoom;
+    this.maxZoom = maxZoom;
     this.state = {
       ...defaultAppState,
       theme,
@@ -4021,6 +4029,13 @@ class App extends React.Component<AppProps, AppState> {
   };
 
   /**
+   * Normalizes zoom value using custom min/max if provided, otherwise uses defaults
+   */
+  public normalizeZoom = (zoom: number): NormalizedZoomValue => {
+    return getNormalizedZoom(zoom, this.minZoom, this.maxZoom);
+  };
+
+  /**
    * Zooms on canvas viewport center
    */
   zoomCanvas = (
@@ -4035,7 +4050,7 @@ class App extends React.Component<AppProps, AppState> {
         {
           viewportX: this.state.width / 2 + this.state.offsetLeft,
           viewportY: this.state.height / 2 + this.state.offsetTop,
-          nextZoom: getNormalizedZoom(value),
+          nextZoom: this.normalizeZoom(value),
         },
         this.state,
       ),
@@ -4123,8 +4138,8 @@ class App extends React.Component<AppProps, AppState> {
         appState: this.state,
         fitToViewport: !!opts?.fitToViewport,
         viewportZoomFactor: opts?.viewportZoomFactor,
-        minZoom: opts?.minZoom,
-        maxZoom: opts?.maxZoom,
+        minZoom: opts?.minZoom ?? this.minZoom,
+        maxZoom: opts?.maxZoom ?? this.maxZoom,
       });
       zoom = appState.zoom;
       scrollX = appState.scrollX;
@@ -4294,7 +4309,7 @@ class App extends React.Component<AppProps, AppState> {
        *  - `CaptureUpdateAction.NEVER`: Updates never make it to undo/redo stack. Use for remote updates or scene initialization.
        *  - `CaptureUpdateAction.EVENTUALLY`: Updates will be eventually be captured as part of a future increment.
        *
-       * Check [API docs](https://docs.excalidraw.com/docs/@excalidraw-modify/excalidraw/api/props/excalidraw-api#captureUpdate) for more details.
+       * Check [API docs](https://docs.excalidraw.com/docs/@excalidraw/excalidraw/api/props/excalidraw-api#captureUpdate) for more details.
        *
        * @default CaptureUpdateAction.EVENTUALLY
        */
@@ -5360,7 +5375,7 @@ class App extends React.Component<AppProps, AppState> {
           {
             viewportX: this.lastViewportPosition.x,
             viewportY: this.lastViewportPosition.y,
-            nextZoom: getNormalizedZoom(initialScale * event.scale),
+            nextZoom: this.normalizeZoom(initialScale * event.scale),
           },
           state,
         ),
@@ -6259,7 +6274,7 @@ class App extends React.Component<AppProps, AppState> {
           : distance / gesture.initialDistance;
 
       const nextZoom = scaleFactor
-        ? getNormalizedZoom(initialScale * scaleFactor)
+        ? this.normalizeZoom(initialScale * scaleFactor)
         : this.state.zoom.value;
 
       this.setState((state) => {
@@ -12108,7 +12123,7 @@ class App extends React.Component<AppProps, AppState> {
             {
               viewportX: this.lastViewportPosition.x,
               viewportY: this.lastViewportPosition.y,
-              nextZoom: getNormalizedZoom(newZoom),
+              nextZoom: this.normalizeZoom(newZoom),
             },
             state,
           ),
@@ -12276,20 +12291,7 @@ class App extends React.Component<AppProps, AppState> {
 // -----------------------------------------------------------------------------
 // TEST HOOKS
 // -----------------------------------------------------------------------------
-declare global {
-  interface Window {
-    h: {
-      scene: Scene;
-      elements: readonly ExcalidrawElement[];
-      state: AppState;
-      setState: React.Component<any, AppState>["setState"];
-      watchState: (prev: any, next: any) => void | undefined;
-      app: InstanceType<typeof App>;
-      history: History;
-      store: Store;
-    };
-  }
-}
+// Window.h type definition is in global.d.ts to avoid duplicate declarations
 
 export const createTestHook = () => {
   if (isTestEnv() || isDevEnv()) {

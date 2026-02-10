@@ -1,8 +1,8 @@
 import { Popover } from "radix-ui";
 
-import { MOBILE_ACTION_BUTTON_BG } from "@excalidraw-modify/common";
+import { MOBILE_ACTION_BUTTON_BG } from "@excalidraw/common";
 
-import type { FontFamilyValues } from "@excalidraw-modify/element/types";
+import type { FontFamilyValues } from "@excalidraw/element/types";
 
 import { t } from "../../i18n";
 import { ButtonIcon } from "../ButtonIcon";

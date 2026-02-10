@@ -1,11 +1,11 @@
-import { pointFrom, pointRotateRads } from "@excalidraw-modify/math";
+import { pointFrom, pointRotateRads } from "@excalidraw/math";
 
 import {
   elementCenterPoint,
   getCommonBounds,
   getElementPointsCoords,
-} from "@excalidraw-modify/element";
-import { cropElement } from "@excalidraw-modify/element";
+} from "@excalidraw/element";
+import { cropElement } from "@excalidraw/element";
 import {
   getTransformHandles,
   getTransformHandlesFromCoords,
@@ -13,18 +13,18 @@ import {
   OMIT_SIDES_FOR_MULTIPLE_ELEMENTS,
   type TransformHandle,
   type TransformHandleDirection,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 import {
   isLinearElement,
   isFreeDrawElement,
   isTextElement,
   isFrameLikeElement,
-} from "@excalidraw-modify/element";
-import { KEYS, arrayToMap } from "@excalidraw-modify/common";
+} from "@excalidraw/element";
+import { KEYS, arrayToMap } from "@excalidraw/common";
 
-import type { GlobalPoint, LocalPoint, Radians } from "@excalidraw-modify/math";
+import type { GlobalPoint, LocalPoint, Radians } from "@excalidraw/math";
 
-import type { TransformHandleType } from "@excalidraw-modify/element";
+import type { TransformHandleType } from "@excalidraw/element";
 import type {
   ExcalidrawElement,
   ExcalidrawLinearElement,
@@ -37,7 +37,7 @@ import type {
   ExcalidrawTextElementWithContainer,
   ExcalidrawImageElement,
   ElementsMap,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { createTestHook } from "../../components/App";
 import { getTextEditor, TEXT_EDITOR_SELECTOR } from "../queries/dom";

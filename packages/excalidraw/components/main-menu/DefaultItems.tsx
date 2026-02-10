@@ -1,8 +1,8 @@
 import clsx from "clsx";
 
-import { THEME } from "@excalidraw-modify/common";
+import { THEME } from "@excalidraw/common";
 
-import type { Theme } from "@excalidraw-modify/element/types";
+import type { Theme } from "@excalidraw/element/types";
 
 import {
   actionClearCanvas,

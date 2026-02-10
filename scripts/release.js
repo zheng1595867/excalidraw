@@ -7,7 +7,7 @@ const updateChangelog = require("./updateChangelog");
 
 // skipping utils for now, as it has independent release process
 const PACKAGES = ["common", "math", "element", "excalidraw"];
-const PACKAGE_SCOPE = "@excalidraw-modify";
+const PACKAGE_SCOPE = "@excalidraw";
 const PACKAGES_DIR = path.resolve(__dirname, "../packages");
 
 /**
@@ -15,11 +15,11 @@ const PACKAGES_DIR = path.resolve(__dirname, "../packages");
  *
  * Usage examples:
  * - yarn release --help                          -> prints this help message
- * - yarn release                                 -> publishes `@excalidraw-modify` packages with "test" tag and "-[hash]" version suffix
+ * - yarn release                                 -> publishes `@excalidraw` packages with "test" tag and "-[hash]" version suffix
  * - yarn release --tag=test                      -> same as above
- * - yarn release --tag=next                      -> publishes `@excalidraw-modify` packages with "next" tag and version "-[hash]" suffix
+ * - yarn release --tag=next                      -> publishes `@excalidraw` packages with "next" tag and version "-[hash]" suffix
  * - yarn release --tag=next --non-interactive    -> skips interactive prompts (runs on CI/CD), otherwise same as above
- * - yarn release --tag=latest --version=0.19.0   -> publishes `@excalidraw-modify` packages with "latest" tag and version "0.19.0" & prepares changelog for the release
+ * - yarn release --tag=latest --version=0.19.0   -> publishes `@excalidraw` packages with "latest" tag and version "0.19.0" & prepares changelog for the release
  *
  * @returns [tag, version, nonInteractive]
  */

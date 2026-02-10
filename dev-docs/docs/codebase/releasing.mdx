@@ -4,7 +4,7 @@ title: Publishing the npm packages
 
 ## Overview
 
-Use the monorepo's `scripts/release.js` helper (`yarn release`) whenever you want to publish your fork to npm just like the upstream project. The script builds the core packages (`@excalidraw-modify/common`, `@excalidraw-modify/math`, `@excalidraw-modify/element`, `@excalidraw-modify/excalidraw`), aligns their internal dependency versions, updates the changelog for stable releases, and finally runs `yarn publish` inside each package directory. By default the forked packages live under the `@excalidraw-modify/*` scope.
+Use the monorepo's `scripts/release.js` helper (`yarn release`) whenever you want to publish your fork to npm just like the upstream project. The script builds the core packages (`@excalidraw/common`, `@excalidraw/math`, `@excalidraw/element`, `@excalidraw/excalidraw`), aligns their internal dependency versions, updates the changelog for stable releases, and finally runs `yarn publish` inside each package directory. By default the forked packages live under the `@excalidraw/*` scope.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Use the monorepo's `scripts/release.js` helper (`yarn release`) whenever you wan
 3. **Pick a dist-tag**  
    `scripts/release.js` supports three tags:
    - `test` (default) – creates versions suffixed with the current git short hash, useful for internal validation.
-   - `next` – same suffixing as `test`, but npm users install via `@excalidraw-modify/excalidraw@next`.
+   - `next` – same suffixing as `test`, but npm users install via `@excalidraw/excalidraw@next`.
    - `latest` – stable releases. You _must_ pass an explicit semantic version via `--version=0.xx.x`.
 
 4. **Run the release script**
@@ -46,7 +46,7 @@ Use the monorepo's `scripts/release.js` helper (`yarn release`) whenever you wan
    Behind the scenes the script will:
    - call `yarn rm:build` to wipe stale build artifacts,
    - run `yarn run build:esm` inside each package directory,
-   - rewrite every `packages/*/package.json` so the `version` property and internal `@excalidraw-modify/*` dependencies all match,
+   - rewrite every `packages/*/package.json` so the `version` property and internal `@excalidraw/*` dependencies all match,
    - for `latest`, execute `scripts/updateChangelog.js` and prompt you to commit the bump,
    - either publish immediately (`--non-interactive`) or ask whether to push to npm.
 
@@ -59,7 +59,7 @@ Use the monorepo's `scripts/release.js` helper (`yarn release`) whenever you wan
 
 ## Custom scopes or forks
 
-- If you cannot publish to the default `@excalidraw-modify/*` names, update the `"name"` field in each package (for example `@myteam/excalidraw`). Ensure other packages point to the new names inside their `dependencies`.
+- If you cannot publish to the default `@excalidraw/*` names, update the `"name"` field in each package (for example `@myteam/excalidraw`). Ensure other packages point to the new names inside their `dependencies`.
 - Adjust `scripts/release.js` so `PACKAGES` lists the packages you actually want to publish; otherwise the script will attempt to release the upstream names.
 - Keep your README and documentation accurate (e.g., describe how to install your scoped build: `npm install @myteam/excalidraw`).
 
@@ -90,7 +90,7 @@ Use the monorepo's `scripts/release.js` helper (`yarn release`) whenever you wan
    ```
    A quick check:
    ```bash
-   rg -n "@excalidraw-modify/(common|element|math|excalidraw)" packages
+   rg -n "@excalidraw/(common|element|math|excalidraw)" packages
    ```
    replace matches with the new scope.
 
@@ -105,14 +105,14 @@ Use the monorepo's `scripts/release.js` helper (`yarn release`) whenever you wan
 To speed up the renaming, use the helper script introduced in this repo:
 
 ```bash
-# rename @excalidraw-modify/* -> @myteam/*
+# rename @excalidraw/* -> @myteam/*
 yarn set:scope --scope=@myteam
 
 # if you already renamed once and need to switch scopes again
 yarn set:scope --scope=@another --from=@myteam
 ```
 
-The script walks through `packages/common`, `packages/math`, `packages/element`, and `packages/excalidraw`, updates their `"name"` fields, and rewrites any internal dependencies so they reference the new scope. After running it, search the repo for `@excalidraw-modify/` to catch any remaining references (for example, README badges or example apps) before publishing.
+The script walks through `packages/common`, `packages/math`, `packages/element`, and `packages/excalidraw`, updates their `"name"` fields, and rewrites any internal dependencies so they reference the new scope. After running it, search the repo for `@excalidraw/` to catch any remaining references (for example, README badges or example apps) before publishing.
 
 ## Troubleshooting
 

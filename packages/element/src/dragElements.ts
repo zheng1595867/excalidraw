@@ -4,16 +4,16 @@ import {
   getGridPoint,
   getFontString,
   DRAGGING_THRESHOLD,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
 import type {
   AppState,
   NormalizedZoomValue,
   NullableGridSize,
   PointerDownState,
-} from "@excalidraw-modify/excalidraw/types";
+} from "@excalidraw/excalidraw/types";
 
-import type { NonDeletedExcalidrawElement } from "@excalidraw-modify/element/types";
+import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
 
 import { unbindBindingElement, updateBoundElements } from "./binding";
 import { getCommonBounds } from "./bounds";

@@ -7,7 +7,7 @@ import {
   pointFrom,
   pointRotateRads,
   type Radians,
-} from "@excalidraw-modify/math";
+} from "@excalidraw/math";
 
 import {
   BOUND_TEXT_PADDING,
@@ -34,13 +34,13 @@ import type {
   ElementsPendingErasure,
   PendingExcalidrawElements,
   NormalizedZoomValue,
-} from "@excalidraw-modify/excalidraw/types";
+} from "@excalidraw/excalidraw/types";
 
 import type {
   StaticCanvasRenderConfig,
   RenderableElementsMap,
   InteractiveCanvasRenderConfig,
-} from "@excalidraw-modify/excalidraw/scene/types";
+} from "@excalidraw/excalidraw/scene/types";
 
 import { getElementAbsoluteCoords, getElementBounds } from "./bounds";
 import { getUncroppedImageElement } from "./cropElement";

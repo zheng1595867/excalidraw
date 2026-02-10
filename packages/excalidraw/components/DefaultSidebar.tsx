@@ -5,9 +5,9 @@ import {
   DEFAULT_SIDEBAR,
   LIBRARY_SIDEBAR_TAB,
   composeEventHandlers,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import type { MarkOptional, Merge } from "@excalidraw-modify/common/utility-types";
+import type { MarkOptional, Merge } from "@excalidraw/common/utility-types";
 
 import { useTunnels } from "../context/tunnels";
 import { useUIAppState } from "../context/ui-appState";

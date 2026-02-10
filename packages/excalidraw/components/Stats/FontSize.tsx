@@ -1,15 +1,15 @@
 import {
   getBoundTextElement,
   redrawTextBoundingBox,
-} from "@excalidraw-modify/element";
-import { hasBoundTextElement, isTextElement } from "@excalidraw-modify/element";
+} from "@excalidraw/element";
+import { hasBoundTextElement, isTextElement } from "@excalidraw/element";
 
 import type {
   ExcalidrawElement,
   ExcalidrawTextElement,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
-import type { Scene } from "@excalidraw-modify/element";
+import type { Scene } from "@excalidraw/element";
 
 import { fontSizeIcon } from "../icons";
 

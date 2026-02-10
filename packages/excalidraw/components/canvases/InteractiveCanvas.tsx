@@ -5,8 +5,8 @@ import {
   isShallowEqual,
   sceneCoordsToViewportCoords,
   type EditorInterface,
-} from "@excalidraw-modify/common";
-import { AnimationController } from "@excalidraw-modify/excalidraw/renderer/animation";
+} from "@excalidraw/common";
+import { AnimationController } from "@excalidraw/excalidraw/renderer/animation";
 
 import type {
   InteractiveCanvasRenderConfig,
@@ -14,12 +14,12 @@ import type {
   InteractiveSceneRenderConfig,
   RenderableElementsMap,
   RenderInteractiveSceneCallback,
-} from "@excalidraw-modify/excalidraw/scene/types";
+} from "@excalidraw/excalidraw/scene/types";
 
 import type {
   NonDeletedExcalidrawElement,
   NonDeletedSceneElementsMap,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { t } from "../../i18n";
 import { renderInteractiveScene } from "../../renderer/interactiveScene";

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-import { EVENT, KEYS } from "@excalidraw-modify/common";
+import { EVENT, KEYS } from "@excalidraw/common";
 
 import type { ChangeEventHandler } from "react";
 

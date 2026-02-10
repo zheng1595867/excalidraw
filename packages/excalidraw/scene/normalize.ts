@@ -1,11 +1,17 @@
-import { MAX_ZOOM, MIN_ZOOM } from "@excalidraw-modify/common";
+import { MAX_ZOOM, MIN_ZOOM } from "@excalidraw/common";
 
-import { clamp, round } from "@excalidraw-modify/math";
+import { clamp, round } from "@excalidraw/math";
 
 import type { NormalizedZoomValue } from "../types";
 
-export const getNormalizedZoom = (zoom: number): NormalizedZoomValue => {
-  return clamp(round(zoom, 6), MIN_ZOOM, MAX_ZOOM) as NormalizedZoomValue;
+export const getNormalizedZoom = (
+  zoom: number,
+  minZoom?: number,
+  maxZoom?: number,
+): NormalizedZoomValue => {
+  const min = minZoom ?? MIN_ZOOM;
+  const max = maxZoom ?? MAX_ZOOM;
+  return clamp(round(zoom, 6), min, max) as NormalizedZoomValue;
 };
 
 export const getNormalizedGridSize = (gridStep: number) => {

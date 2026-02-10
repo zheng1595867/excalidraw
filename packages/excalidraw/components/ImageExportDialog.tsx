@@ -7,9 +7,9 @@ import {
   isFirefox,
   EXPORT_SCALES,
   cloneJSON,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import type { NonDeletedExcalidrawElement } from "@excalidraw-modify/element/types";
+import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
 
 import {
   actionExportWithDarkMode,

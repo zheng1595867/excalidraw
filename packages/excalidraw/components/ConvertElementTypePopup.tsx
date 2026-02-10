@@ -3,9 +3,9 @@ import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import {
   getLinearElementSubType,
   updateElbowArrowPoints,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { pointFrom, pointRotateRads, type LocalPoint } from "@excalidraw-modify/math";
+import { pointFrom, pointRotateRads, type LocalPoint } from "@excalidraw/math";
 
 import {
   hasBoundTextElement,
@@ -14,21 +14,21 @@ import {
   isElbowArrow,
   isLinearElement,
   isUsingAdaptiveRadius,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import {
   getCommonBoundingBox,
   getElementAbsoluteCoords,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import {
   getBoundTextElement,
   getBoundTextMaxHeight,
   getBoundTextMaxWidth,
   redrawTextBoundingBox,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { wrapText } from "@excalidraw-modify/element";
+import { wrapText } from "@excalidraw/element";
 
 import {
   assertNever,
@@ -38,21 +38,21 @@ import {
   mapFind,
   reduceToCommonValue,
   updateActiveTool,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import { measureText } from "@excalidraw-modify/element";
+import { measureText } from "@excalidraw/element";
 
-import { LinearElementEditor } from "@excalidraw-modify/element";
+import { LinearElementEditor } from "@excalidraw/element";
 
 import {
   newArrowElement,
   newElement,
   newLinearElement,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { ShapeCache } from "@excalidraw-modify/element";
+import { ShapeCache } from "@excalidraw/element";
 
-import { updateBindings } from "@excalidraw-modify/element";
+import { updateBindings } from "@excalidraw/element";
 
 import type {
   ConvertibleGenericTypes,
@@ -67,9 +67,9 @@ import type {
   ExcalidrawTextContainer,
   ExcalidrawTextElementWithContainer,
   FixedSegment,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
-import type { Scene } from "@excalidraw-modify/element";
+import type { Scene } from "@excalidraw/element";
 
 import {
   bumpVersion,

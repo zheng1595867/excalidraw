@@ -1,19 +1,19 @@
-# @excalidraw-modify/common
+# @excalidraw/common
 
 ## Install
 
 ```bash
-npm install @excalidraw-modify/common
+npm install @excalidraw/common
 ```
 
 If you prefer Yarn over npm, use this command to install the Excalidraw utils package:
 
 ```bash
-yarn add @excalidraw-modify/common
+yarn add @excalidraw/common
 ```
 
 With PNPM, similarly install the package with this command:
 
 ```bash
-pnpm add @excalidraw-modify/common
+pnpm add @excalidraw/common
 ```

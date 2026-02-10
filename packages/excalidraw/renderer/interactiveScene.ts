@@ -15,7 +15,7 @@ import {
   getFeatureFlag,
   invariant,
   THEME,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
 import {
   deconstructDiamondElement,
@@ -35,16 +35,16 @@ import {
   isLineElement,
   isTextElement,
   LinearElementEditor,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { renderSelectionElement } from "@excalidraw-modify/element";
+import { renderSelectionElement } from "@excalidraw/element";
 
 import {
   getElementsInGroup,
   getSelectedGroupIds,
   isSelectedViaGroup,
   selectGroupsFromGivenElements,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import { getCommonBounds, getElementAbsoluteCoords } from "@excalidraw/element";
 import {
@@ -55,7 +55,7 @@ import {
 import type {
   TransformHandles,
   TransformHandleType,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import type {
   ElementsMap,
@@ -69,7 +69,7 @@ import type {
   GroupId,
   NonDeleted,
   NonDeletedSceneElementsMap,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { renderSnaps } from "../renderer/renderSnaps";
 import { roundRect } from "../renderer/roundRect";
@@ -1587,6 +1587,7 @@ const _renderInteractiveScene = ({
     context.translate(appState.scrollX, appState.scrollY);
 
     if (selectedElements.length === 1) {
+      const activeElement = selectedElements[0];
       context.fillStyle = "#fff";
       const transformHandles = getTransformHandles(
         activeElement,

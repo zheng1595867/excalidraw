@@ -1,4 +1,4 @@
-import { pointFrom } from "@excalidraw-modify/math";
+import { pointFrom } from "@excalidraw/math";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -23,24 +23,24 @@ import {
   reduceToCommonValue,
   invariant,
   FONT_SIZES,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import { canBecomePolygon, getNonDeletedElements } from "@excalidraw-modify/element";
+import { canBecomePolygon, getNonDeletedElements } from "@excalidraw/element";
 
 import {
   bindBindingElement,
   calculateFixedPointForElbowArrowBinding,
   updateBoundElements,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { LinearElementEditor } from "@excalidraw-modify/element";
+import { LinearElementEditor } from "@excalidraw/element";
 
-import { newElementWith } from "@excalidraw-modify/element";
+import { newElementWith } from "@excalidraw/element";
 
 import {
   getBoundTextElement,
   redrawTextBoundingBox,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import {
   isArrowElement,
@@ -50,19 +50,19 @@ import {
   isLineElement,
   isTextElement,
   isUsingAdaptiveRadius,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { hasStrokeColor } from "@excalidraw-modify/element";
+import { hasStrokeColor } from "@excalidraw/element";
 
 import {
   updateElbowArrowPoints,
   CaptureUpdateAction,
   toggleLinePolygonState,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { deriveStylesPanelMode } from "@excalidraw-modify/common";
+import { deriveStylesPanelMode } from "@excalidraw/common";
 
-import type { LocalPoint, Radians } from "@excalidraw-modify/math";
+import type { LocalPoint, Radians } from "@excalidraw/math";
 
 import type {
   Arrowhead,
@@ -74,11 +74,11 @@ import type {
   FontFamilyValues,
   TextAlign,
   VerticalAlign,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
-import type { Scene } from "@excalidraw-modify/element";
+import type { Scene } from "@excalidraw/element";
 
-import type { CaptureUpdateActionType } from "@excalidraw-modify/element";
+import type { CaptureUpdateActionType } from "@excalidraw/element";
 
 import { trackEvent } from "../analytics";
 import { RadioSelection } from "../components/RadioSelection";

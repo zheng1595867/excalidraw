@@ -11,7 +11,7 @@ import {
   vectorScale,
   type GlobalPoint,
   type LocalPoint,
-} from "@excalidraw-modify/math";
+} from "@excalidraw/math";
 
 import {
   type Bounds,
@@ -21,9 +21,9 @@ import {
   getSizeFromPoints,
   isDevEnv,
   arrayToMap,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import type { AppState } from "@excalidraw-modify/excalidraw/types";
+import type { AppState } from "@excalidraw/excalidraw/types";
 
 import {
   bindPointToSnapToElementOutline,

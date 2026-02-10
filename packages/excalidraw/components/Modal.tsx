@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 
-import { KEYS } from "@excalidraw-modify/common";
+import { KEYS } from "@excalidraw/common";
 
 import { useCreatePortalContainer } from "../hooks/useCreatePortalContainer";
 

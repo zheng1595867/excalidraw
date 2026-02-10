@@ -15,31 +15,31 @@ import {
   applyDarkModeFilter,
 } from "@excalidraw/common";
 
-import { getCommonBounds, getElementAbsoluteCoords } from "@excalidraw-modify/element";
+import { getCommonBounds, getElementAbsoluteCoords } from "@excalidraw/element";
 
 import {
   getInitializedImageElements,
   updateImageCache,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { newElementWith } from "@excalidraw-modify/element";
+import { newElementWith } from "@excalidraw/element";
 
-import { isFrameLikeElement } from "@excalidraw-modify/element";
+import { isFrameLikeElement } from "@excalidraw/element";
 
 import {
   getElementsOverlappingFrame,
   getFrameLikeElements,
   getFrameLikeTitle,
   getRootElements,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { syncInvalidIndices } from "@excalidraw-modify/element";
+import { syncInvalidIndices } from "@excalidraw/element";
 
-import { type Mutable } from "@excalidraw-modify/common/utility-types";
+import { type Mutable } from "@excalidraw/common/utility-types";
 
-import { newTextElement } from "@excalidraw-modify/element";
+import { newTextElement } from "@excalidraw/element";
 
-import type { Bounds } from "@excalidraw-modify/common";
+import type { Bounds } from "@excalidraw/common";
 
 import type {
   ExcalidrawElement,
@@ -47,7 +47,7 @@ import type {
   ExcalidrawTextElement,
   NonDeletedExcalidrawElement,
   NonDeletedSceneElementsMap,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { getDefaultAppState } from "../appState";
 import { base64ToString, decode, encode, stringToBase64 } from "../data/encode";

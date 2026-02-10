@@ -4,7 +4,7 @@ import {
   SVG_NS,
   getSvgPathFromStroke,
   sceneCoordsToViewportCoords,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
 import type { LaserPointerOptions } from "@excalidraw/laser-pointer";
 

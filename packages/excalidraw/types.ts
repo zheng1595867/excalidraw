@@ -4,11 +4,11 @@ import type {
   throttleRAF,
   MIME_TYPES,
   EditorInterface,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import type { LinearElementEditor } from "@excalidraw-modify/element";
+import type { LinearElementEditor } from "@excalidraw/element";
 
-import type { MaybeTransformHandleType } from "@excalidraw-modify/element";
+import type { MaybeTransformHandleType } from "@excalidraw/element";
 
 import type {
   PointerType,
@@ -33,20 +33,20 @@ import type {
   OrderedExcalidrawElement,
   ExcalidrawNonSelectionElement,
   BindMode,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import type {
   Merge,
   MaybePromise,
   ValueOf,
   MakeBrand,
-} from "@excalidraw-modify/common/utility-types";
+} from "@excalidraw/common/utility-types";
 
 import type {
   CaptureUpdateActionType,
   DurableIncrement,
   EphemeralIncrement,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import type { Action } from "./actions/types";
 import type { Spreadsheet } from "./charts";
@@ -637,6 +637,14 @@ export interface ExcalidrawProps {
   aiEnabled?: boolean;
   showDeprecatedFonts?: boolean;
   renderScrollbars?: boolean;
+  /**
+   * Minimum zoom level (default: 0.1 = 10%)
+   */
+  minZoom?: number;
+  /**
+   * Maximum zoom level (default: 30 = 3000%)
+   */
+  maxZoom?: number;
 }
 
 export type SceneData = {
@@ -753,6 +761,7 @@ export type AppClassProperties = {
   setPlugins: App["setPlugins"];
   plugins: App["plugins"];
   getEditorUIOffsets: App["getEditorUIOffsets"];
+  normalizeZoom: App["normalizeZoom"];
   visibleElements: App["visibleElements"];
   excalidrawContainerValue: App["excalidrawContainerValue"];
 

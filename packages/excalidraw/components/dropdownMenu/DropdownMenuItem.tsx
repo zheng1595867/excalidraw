@@ -1,6 +1,6 @@
 import React from "react";
 
-import { THEME } from "@excalidraw-modify/common";
+import { THEME } from "@excalidraw/common";
 
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 

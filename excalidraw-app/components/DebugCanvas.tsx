@@ -2,27 +2,27 @@ import {
   ArrowheadArrowIcon,
   CloseIcon,
   TrashIcon,
-} from "@excalidraw-modify/excalidraw/components/icons";
+} from "@excalidraw/excalidraw/components/icons";
 import {
   bootstrapCanvas,
   getNormalizedCanvasDimensions,
-} from "@excalidraw-modify/excalidraw/renderer/helpers";
-import { type AppState } from "@excalidraw-modify/excalidraw/types";
-import { arrayToMap, throttleRAF } from "@excalidraw-modify/common";
+} from "@excalidraw/excalidraw/renderer/helpers";
+import { type AppState } from "@excalidraw/excalidraw/types";
+import { arrayToMap, throttleRAF } from "@excalidraw/common";
 import { useCallback } from "react";
 
 import {
   getGlobalFixedPointForBindableElement,
   isArrowElement,
   isBindableElement,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
 import {
   isLineSegment,
   type GlobalPoint,
   type LineSegment,
-} from "@excalidraw-modify/math";
-import { isCurve } from "@excalidraw-modify/math/curve";
+} from "@excalidraw/math";
+import { isCurve } from "@excalidraw/math/curve";
 
 import React from "react";
 
@@ -37,7 +37,7 @@ import type {
   ExcalidrawBindableElement,
   FixedPointBinding,
   OrderedExcalidrawElement,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { STORAGE_KEYS } from "../app_constants";
 

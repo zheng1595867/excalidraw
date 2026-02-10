@@ -1,5 +1,5 @@
-import { MIME_TYPES } from "@excalidraw-modify/common";
-import { getDefaultAppState } from "@excalidraw-modify/excalidraw/appState";
+import { MIME_TYPES } from "@excalidraw/common";
+import { getDefaultAppState } from "@excalidraw/excalidraw/appState";
 import {
   copyBlobToClipboardAsPng,
   copyTextToSystemClipboard,
@@ -14,14 +14,14 @@ import {
 import {
   exportToCanvas as _exportToCanvas,
   exportToSvg as _exportToSvg,
-} from "@excalidraw-modify/excalidraw/scene/export";
+} from "@excalidraw/excalidraw/scene/export";
 
 import type {
   ExcalidrawElement,
   ExcalidrawFrameLikeElement,
   NonDeleted,
-} from "@excalidraw-modify/element/types";
-import type { AppState, BinaryFiles } from "@excalidraw-modify/excalidraw/types";
+} from "@excalidraw/element/types";
+import type { AppState, BinaryFiles } from "@excalidraw/excalidraw/types";
 
 export { MIME_TYPES };
 

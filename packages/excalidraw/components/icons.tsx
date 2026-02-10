@@ -9,9 +9,9 @@
 import clsx from "clsx";
 import React from "react";
 
-import { THEME } from "@excalidraw-modify/common";
+import { THEME } from "@excalidraw/common";
 
-import type { Theme } from "@excalidraw-modify/element/types";
+import type { Theme } from "@excalidraw/element/types";
 
 export const iconFillColor = (theme: Theme) => "var(--icon-fill-color)";
 

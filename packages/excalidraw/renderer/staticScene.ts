@@ -11,22 +11,22 @@ import {
   isEmbeddableElement,
   isIframeLikeElement,
   isTextElement,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 import {
   elementOverlapsWithFrame,
   getTargetFrame,
   shouldApplyFrameClip,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { renderElement } from "@excalidraw-modify/element";
+import { renderElement } from "@excalidraw/element";
 
-import { getElementAbsoluteCoords } from "@excalidraw-modify/element";
+import { getElementAbsoluteCoords } from "@excalidraw/element";
 
 import type {
   ElementsMap,
   ExcalidrawFrameLikeElement,
   NonDeletedExcalidrawElement,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import {
   EXTERNAL_LINK_IMG,

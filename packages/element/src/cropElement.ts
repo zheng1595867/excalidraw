@@ -11,7 +11,7 @@ import {
   pointFromVector,
   clamp,
   isCloseTo,
-} from "@excalidraw-modify/math";
+} from "@excalidraw/math";
 import { type Point } from "points-on-curve";
 
 import {

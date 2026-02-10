@@ -7,16 +7,16 @@ import React, {
   type KeyboardEventHandler,
 } from "react";
 
-import { type FontFamilyValues } from "@excalidraw-modify/element/types";
+import { type FontFamilyValues } from "@excalidraw/element/types";
 
 import {
   arrayToList,
   debounce,
   FONT_FAMILY,
   getFontFamilyString,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import type { ValueOf } from "@excalidraw-modify/common/utility-types";
+import type { ValueOf } from "@excalidraw/common/utility-types";
 
 import { Fonts } from "../../fonts";
 import { t } from "../../i18n";

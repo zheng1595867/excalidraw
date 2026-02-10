@@ -1,11 +1,11 @@
 import React from "react";
 
-import { isPromiseLike } from "@excalidraw-modify/common";
+import { isPromiseLike } from "@excalidraw/common";
 
 import type {
   ExcalidrawElement,
   OrderedExcalidrawElement,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { trackEvent } from "../analytics";
 

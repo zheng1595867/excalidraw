@@ -2,13 +2,13 @@ import {
   loginIcon,
   ExcalLogo,
   eyeIcon,
-} from "@excalidraw-modify/excalidraw/components/icons";
-import { MainMenu } from "@excalidraw-modify/excalidraw/index";
+} from "@excalidraw/excalidraw/components/icons";
+import { MainMenu } from "@excalidraw/excalidraw/index";
 import React from "react";
 
-import { isDevEnv } from "@excalidraw-modify/common";
+import { isDevEnv } from "@excalidraw/common";
 
-import type { Theme } from "@excalidraw-modify/element/types";
+import type { Theme } from "@excalidraw/element/types";
 
 import { LanguageList } from "../app-language/LanguageList";
 import { isExcalidrawPlusSignedUser } from "../app_constants";

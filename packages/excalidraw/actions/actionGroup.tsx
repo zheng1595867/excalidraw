@@ -1,8 +1,8 @@
-import { getNonDeletedElements } from "@excalidraw-modify/element";
+import { getNonDeletedElements } from "@excalidraw/element";
 
-import { newElementWith } from "@excalidraw-modify/element";
+import { newElementWith } from "@excalidraw/element";
 
-import { isBoundToContainer } from "@excalidraw-modify/element";
+import { isBoundToContainer } from "@excalidraw/element";
 
 import {
   frameAndChildrenSelectedTogether,
@@ -12,9 +12,9 @@ import {
   groupByFrameLikes,
   removeElementsFromFrame,
   replaceAllElementsInFrame,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { KEYS, randomId, arrayToMap } from "@excalidraw-modify/common";
+import { KEYS, randomId, arrayToMap } from "@excalidraw/common";
 
 import {
   getSelectedGroupIds,
@@ -24,17 +24,17 @@ import {
   addToGroup,
   removeFromSelectedGroups,
   isElementInGroup,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 
-import { syncMovedIndices } from "@excalidraw-modify/element";
+import { syncMovedIndices } from "@excalidraw/element";
 
-import { CaptureUpdateAction } from "@excalidraw-modify/element";
+import { CaptureUpdateAction } from "@excalidraw/element";
 
 import type {
   ExcalidrawElement,
   ExcalidrawTextElement,
   OrderedExcalidrawElement,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { ToolButton } from "../components/ToolButton";
 import { UngroupIcon, GroupIcon } from "../components/icons";

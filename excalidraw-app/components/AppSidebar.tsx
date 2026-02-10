@@ -1,10 +1,10 @@
-import { DefaultSidebar, Sidebar, THEME } from "@excalidraw-modify/excalidraw";
+import { DefaultSidebar, Sidebar, THEME } from "@excalidraw/excalidraw";
 import {
   messageCircleIcon,
   presentationIcon,
-} from "@excalidraw-modify/excalidraw/components/icons";
-import { LinkButton } from "@excalidraw-modify/excalidraw/components/LinkButton";
-import { useUIAppState } from "@excalidraw-modify/excalidraw/context/ui-appState";
+} from "@excalidraw/excalidraw/components/icons";
+import { LinkButton } from "@excalidraw/excalidraw/components/LinkButton";
+import { useUIAppState } from "@excalidraw/excalidraw/context/ui-appState";
 
 import "./AppSidebar.scss";
 

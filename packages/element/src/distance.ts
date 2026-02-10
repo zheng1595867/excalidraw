@@ -2,11 +2,11 @@ import {
   curvePointDistance,
   distanceToLineSegment,
   pointRotateRads,
-} from "@excalidraw-modify/math";
+} from "@excalidraw/math";
 
-import { ellipse, ellipseDistanceFromPoint } from "@excalidraw-modify/math/ellipse";
+import { ellipse, ellipseDistanceFromPoint } from "@excalidraw/math/ellipse";
 
-import type { GlobalPoint, Radians } from "@excalidraw-modify/math";
+import type { GlobalPoint, Radians } from "@excalidraw/math";
 
 import {
   deconstructDiamondElement,

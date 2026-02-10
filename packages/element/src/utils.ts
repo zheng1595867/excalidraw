@@ -4,7 +4,7 @@ import {
   invariant,
   LINE_CONFIRM_THRESHOLD,
   ROUNDNESS,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
 import {
   curve,
@@ -23,11 +23,11 @@ import {
   vectorNormalize,
   vectorScale,
   type GlobalPoint,
-} from "@excalidraw-modify/math";
+} from "@excalidraw/math";
 
-import type { Curve, LineSegment, LocalPoint } from "@excalidraw-modify/math";
+import type { Curve, LineSegment, LocalPoint } from "@excalidraw/math";
 
-import type { NormalizedZoomValue, Zoom } from "@excalidraw-modify/excalidraw/types";
+import type { NormalizedZoomValue, Zoom } from "@excalidraw/excalidraw/types";
 
 import { elementCenterPoint, getDiamondPoints } from "./bounds";
 

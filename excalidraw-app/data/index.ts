@@ -1,7 +1,7 @@
 import {
   compressData,
   decompressData,
-} from "@excalidraw-modify/excalidraw/data/encode";
+} from "@excalidraw/excalidraw/data/encode";
 import {
   decryptData,
   generateEncryptionKey,
@@ -13,21 +13,21 @@ import { isInitializedImageElement } from "@excalidraw/element";
 import { t } from "@excalidraw/excalidraw/i18n";
 import { bytesToHexString } from "@excalidraw/common";
 
-import type { UserIdleState } from "@excalidraw-modify/common";
-import type { ImportedDataState } from "@excalidraw-modify/excalidraw/data/types";
-import type { SceneBounds } from "@excalidraw-modify/element";
+import type { UserIdleState } from "@excalidraw/common";
+import type { ImportedDataState } from "@excalidraw/excalidraw/data/types";
+import type { SceneBounds } from "@excalidraw/element";
 import type {
   ExcalidrawElement,
   FileId,
   OrderedExcalidrawElement,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 import type {
   AppState,
   BinaryFileData,
   BinaryFiles,
   SocketId,
-} from "@excalidraw-modify/excalidraw/types";
-import type { MakeBrand } from "@excalidraw-modify/common/utility-types";
+} from "@excalidraw/excalidraw/types";
+import type { MakeBrand } from "@excalidraw/common/utility-types";
 
 import {
   DELETED_ELEMENT_TIMEOUT,

@@ -1,4 +1,4 @@
-import { pointFrom, type GlobalPoint } from "@excalidraw-modify/math";
+import { pointFrom, type GlobalPoint } from "@excalidraw/math";
 import clsx from "clsx";
 import {
   useCallback,
@@ -8,15 +8,15 @@ import {
   useState,
 } from "react";
 
-import { EVENT, HYPERLINK_TOOLTIP_DELAY, KEYS } from "@excalidraw-modify/common";
+import { EVENT, HYPERLINK_TOOLTIP_DELAY, KEYS } from "@excalidraw/common";
 
-import { getElementAbsoluteCoords } from "@excalidraw-modify/element";
+import { getElementAbsoluteCoords } from "@excalidraw/element";
 
-import { hitElementBoundingBox } from "@excalidraw-modify/element";
+import { hitElementBoundingBox } from "@excalidraw/element";
 
-import { isElementLink } from "@excalidraw-modify/element";
+import { isElementLink } from "@excalidraw/element";
 
-import { getEmbedLink, embeddableURLValidator } from "@excalidraw-modify/element";
+import { getEmbedLink, embeddableURLValidator } from "@excalidraw/element";
 
 import {
   sceneCoordsToViewportCoords,
@@ -24,17 +24,17 @@ import {
   wrapEvent,
   isLocalLink,
   normalizeLink,
-} from "@excalidraw-modify/common";
+} from "@excalidraw/common";
 
-import { isEmbeddableElement } from "@excalidraw-modify/element";
+import { isEmbeddableElement } from "@excalidraw/element";
 
-import type { Scene } from "@excalidraw-modify/element";
+import type { Scene } from "@excalidraw/element";
 
 import type {
   ElementsMap,
   ExcalidrawEmbeddableElement,
   NonDeletedExcalidrawElement,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
 import { trackEvent } from "../../analytics";
 import { getTooltipDiv, updateTooltipPosition } from "../../components/Tooltip";

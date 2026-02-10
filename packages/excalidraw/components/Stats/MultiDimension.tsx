@@ -1,20 +1,20 @@
-import { pointFrom, type GlobalPoint } from "@excalidraw-modify/math";
+import { pointFrom, type GlobalPoint } from "@excalidraw/math";
 import { useMemo } from "react";
 
-import { MIN_WIDTH_OR_HEIGHT } from "@excalidraw-modify/common";
+import { MIN_WIDTH_OR_HEIGHT } from "@excalidraw/common";
 import {
   getElementsInResizingFrame,
   isFrameLikeElement,
   replaceAllElementsInFrame,
   updateBoundElements,
-} from "@excalidraw-modify/element";
+} from "@excalidraw/element";
 import {
   rescalePointsInElement,
   resizeSingleElement,
-} from "@excalidraw-modify/element";
-import { getBoundTextElement, handleBindTextResize } from "@excalidraw-modify/element";
+} from "@excalidraw/element";
+import { getBoundTextElement, handleBindTextResize } from "@excalidraw/element";
 
-import { isTextElement } from "@excalidraw-modify/element";
+import { isTextElement } from "@excalidraw/element";
 
 import { getCommonBounds } from "@excalidraw/utils";
 
@@ -22,9 +22,9 @@ import type {
   ElementsMap,
   ExcalidrawElement,
   NonDeletedSceneElementsMap,
-} from "@excalidraw-modify/element/types";
+} from "@excalidraw/element/types";
 
-import type { Scene } from "@excalidraw-modify/element";
+import type { Scene } from "@excalidraw/element";
 
 import DragInput from "./DragInput";
 import { getAtomicUnits, getStepSizedValue, isPropertyEditable } from "./utils";

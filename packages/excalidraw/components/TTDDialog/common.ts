@@ -1,4 +1,4 @@
-import { DEFAULT_EXPORT_PADDING, EDITOR_LS_KEYS } from "@excalidraw-modify/common";
+import { DEFAULT_EXPORT_PADDING, EDITOR_LS_KEYS } from "@excalidraw/common";
 
 import type {
   NonDeletedExcalidrawElement,
