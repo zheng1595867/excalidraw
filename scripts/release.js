@@ -213,14 +213,28 @@ const askToPublish = (tag, version) => {
 
 const publishPackages = (tag, version) => {
   for (const packageName of PACKAGES) {
-    execSync(`yarn publish --tag ${tag}`, {
-      cwd: path.resolve(PACKAGES_DIR, packageName),
-      stdio: "inherit",
-    });
+    const packagePath = path.resolve(PACKAGES_DIR, packageName);
+    
+    // Use npm publish instead of yarn publish for better scoped package support
+    // Add --access public for scoped packages
+    try {
+      execSync(`npm publish --tag ${tag} --access public`, {
+        cwd: packagePath,
+        stdio: "inherit",
+      });
 
-    console.info(
-      `Published "${PACKAGE_SCOPE}/${packageName}@${tag}" with version "${version}"! 🎉`,
-    );
+      console.info(
+        `Published "${PACKAGE_SCOPE}/${packageName}@${tag}" with version "${version}"! 🎉`,
+      );
+    } catch (error) {
+      console.error(
+        `Failed to publish "${PACKAGE_SCOPE}/${packageName}": ${error.message}`,
+      );
+      console.error(
+        `Please ensure you are logged in to npm and have permission to publish to ${PACKAGE_SCOPE} scope.`,
+      );
+      throw error;
+    }
   }
 };
 
