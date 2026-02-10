@@ -212,21 +212,51 @@ const askToPublish = (tag, version) => {
 };
 
 const checkNpmAuth = () => {
+  console.info("Checking npm authentication...");
+  
   try {
-    const whoami = execSync("npm whoami", { encoding: "utf-8" }).trim();
-    console.info(`Logged in to npm as: ${whoami}`);
-    return true;
+    // First, try to get current user
+    const whoami = execSync("npm whoami --registry https://registry.npmjs.org/", {
+      encoding: "utf-8",
+      stdio: "pipe",
+    }).trim();
+    
+    if (whoami) {
+      console.info(`✓ Logged in to npm as: ${whoami}`);
+      return true;
+    }
+    
+    throw new Error("No user returned from npm whoami");
   } catch (error) {
-    // whoami may fail even if token exists, so we just warn
-    console.warn("Warning: Could not verify npm login status.");
-    console.warn("If publish fails, please run 'npm login' first.");
+    console.error("✗ npm authentication failed!");
+    console.error("");
+    console.error("Please follow these steps to fix authentication:");
+    console.error("");
+    console.error("1. Clear expired token:");
+    console.error("   - Delete token from: %USERPROFILE%\\.npmrc");
+    console.error("   - Or manually edit the file and remove the _authToken line");
+    console.error("");
+    console.error("2. Re-login to npm:");
+    console.error("   npm login");
+    console.error("");
+    console.error("3. Verify login:");
+    console.error("   npm whoami");
+    console.error("");
+    console.error("4. Then retry the release command.");
+    console.error("");
+    
     return false;
   }
 };
 
 const publishPackages = (tag, version) => {
-  // Try to check npm authentication (non-blocking)
-  checkNpmAuth();
+  // Force check npm authentication before publishing
+  if (!checkNpmAuth()) {
+    console.error("");
+    console.error("Cannot proceed without valid npm authentication.");
+    console.error("Please fix authentication issues and try again.");
+    process.exit(1);
+  }
 
   const npmRegistry = "https://registry.npmjs.org/";
   
