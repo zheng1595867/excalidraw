@@ -1,6 +1,6 @@
 {
   "name": "@excalidraw-modify/common",
-  "version": "0.18.2",
+  "version": "0.18.3",
   "type": "module",
   "types": "./dist/types/common/src/index.d.ts",
   "main": "./dist/prod/index.js",
@@ -51,7 +51,10 @@
     ]
   },
   "bugs": "https://github.com/excalidraw/excalidraw/issues",
-  "repository": "https://github.com/excalidraw/excalidraw",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/excalidraw/excalidraw.git"
+  },
   "scripts": {
     "gen:types": "rimraf types && tsc",
     "build:esm": "rimraf dist && node ../../scripts/buildBase.js && yarn gen:types"
