@@ -899,12 +899,29 @@ export const restoreAppState = (
     const suppliedValue = appState[key];
 
     const localValue = localAppState ? localAppState[key] : undefined;
-    (nextAppState as any)[key] =
-      suppliedValue !== undefined
-        ? suppliedValue
-        : localValue !== undefined
-        ? localValue
-        : defaultValue;
+    
+    // Special validation for searchMatches to ensure it has the correct structure
+    if (key === "searchMatches" && suppliedValue !== undefined) {
+      // searchMatches should be null or an object with matches array
+      if (
+        suppliedValue !== null &&
+        (typeof suppliedValue !== "object" ||
+          !("matches" in suppliedValue) ||
+          !Array.isArray(suppliedValue.matches))
+      ) {
+        // Invalid structure, use default value (null)
+        (nextAppState as any)[key] = defaultValue;
+      } else {
+        (nextAppState as any)[key] = suppliedValue;
+      }
+    } else {
+      (nextAppState as any)[key] =
+        suppliedValue !== undefined
+          ? suppliedValue
+          : localValue !== undefined
+          ? localValue
+          : defaultValue;
+    }
   }
 
   return {
